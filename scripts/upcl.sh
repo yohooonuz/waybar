@@ -34,11 +34,10 @@ ShowUpAval() {
 }
 
 UpCl() {
-    paru -Syu --noconfirm
+    paru -Syu
+    paru -Sc
+    sudo pacman -Rns $(pacman -Qdtq)
     pkill -SIGRTMIN+9 waybar
-    paru -Sc --noconfirm
-    sudo pacman -Rns $(pacman -Qdtq) --noconfirm
-    exit 0
 }
 
 case $1 in
