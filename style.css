@@ -1,0 +1,241 @@
+@define-color trans rgba(0, 0, 0, 0);
+@define-color fg rgb(180, 190, 254);
+@define-color bg rgba(30, 30, 46, 0.88);
+@define-color hvr rgba(17, 17, 27, 0.63);
+
+@define-color red rgb(243, 139, 168);
+@define-color pink rgb(245, 194, 231);
+@define-color maroon rgb(235, 160, 172);
+@define-color orange rgb(250, 179, 135);
+@define-color yellow rgb(249, 226, 175);
+@define-color green rgb(166, 227, 161);
+@define-color blue rgb(137, 180, 250);
+@define-color purple rgb(203, 166, 247);
+@define-color cyan rgb(137, 220, 235);
+@define-color sapphire rgb(116, 199, 236);
+@define-color teal rgb(148, 226, 213);
+@define-color flamingo rgb(242, 205, 205);
+@define-color rosewater rgb(245, 224, 220);
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Inter Display", "JetBrainsMono Nerd Font Propo", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: @trans;
+}
+#modules-left,
+#modules-center,
+#modules-right {
+  background-color: @trans;
+}
+
+#custom-launcher {
+  color: @sapphire;
+  background-color: @bg;
+  margin: 0 4px;
+  padding: 0 8px;
+  transition: background-color 0.2s ease;
+  border-radius: 24px;
+  font-size: 20px;
+}
+
+#workspaces {
+  background-color: @bg;
+  margin: 0 16px;
+  padding: 0 8px;
+  border-radius: 24px;
+}
+#workspaces button {
+  transition: color 0.2s ease;
+  border-radius: 16px;
+  color: @blue;
+}
+#workspaces button.active {
+  color: @cyan;
+}
+#workspaces button.visible {
+  color: @sapphire;
+}
+#workspaces button.urgent {
+  color: @pink;
+}
+
+#custom-cava {
+  background-color: @bg;
+  margin: 0 4px;
+  padding: 0 16px;
+  border-radius: 24px;
+}
+
+#custom-mpris_scroll_edp,
+#custom-mpris_scroll_hdmi {
+  color: @orange;
+  background-color: @bg;
+  margin: 0 4px;
+  padding: 0 0;
+  border-radius: 24px;
+}
+
+#clock {
+  color: @teal;
+  background-color: @bg;
+  margin: 0 4px;
+  padding: 0 16px;
+  border-radius: 24px;
+}
+
+#custom-onf {
+  font-size: 14px;
+  color: @red;
+  background-color: @bg;
+  margin: 0 4px;
+  padding: 0 8px;
+  border-radius: 24px;
+}
+#sysinfo,
+#sysutils,
+#utilities {
+  color: @purple;
+  background-color: @bg;
+  border-radius: 24px;
+  transition: background-color 0.2s ease;
+  margin: 0 4px;
+}
+#bluetooth,
+#network,
+#backlight,
+#custom-ddc,
+#pulseaudio,
+#custom-pacupcl,
+#power-profiles-daemon,
+#custom-IP,
+#battery,
+#memory,
+#custom-igpu,
+#custom-fan,
+#temperature,
+#cpu {
+  font-size: 16px;
+  margin: 0 2px;
+  padding: 0 8px;
+  border-radius: 16px;
+}
+#custom-launcher:hover,
+#workspaces:hover,
+#custom-cava:hover,
+#custom-mpris_scroll_hdmi:hover,
+#custom-mpris_scroll_edp:hover,
+#clock:hover,
+#custom-onf:hover,
+#bluetooth:hover,
+#network:hover,
+#backlight:hover,
+#custom-ddc:hover,
+#pulseaudio:hover,
+#custom-pacupcl:hover,
+#power-profiles-daemon:hover,
+#custom-IP:hover,
+#battery:hover,
+#memory:hover,
+#custom-igpu:hover,
+#cpu:hover,
+#custom-fan:hover,
+#temperature:hover {
+  background-color: @hvr;
+}
+
+#custom-igpu.warning,
+#cpu.warning,
+#memory.warning,
+#battery.warning {
+  color: @orange;
+  background-color: @trans;
+}
+#custom-igpu.critical,
+#temperature.critical,
+#cpu.critical,
+#memory.critical,
+#battery.critical {
+  color: @red;
+  background-color: @trans;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+#custom-IP {
+  color: @flamingo;
+}
+
+#power-profiles-daemon {
+  font-size: 18px;
+}
+#power-profiles-daemon.performance {
+  color: @red;
+}
+#power-profiles-daemon.balanced {
+  color: @blue;
+}
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+
+#custom-pacupcl {
+  color: @maroon;
+}
+
+#pulseaudio,
+#backlight,
+#custom-ddc {
+  color: @pink;
+}
+
+#bluetooth,
+#network {
+  color: @cyan;
+}
+
+tooltip,
+tooltip.background {
+  background-color: rgb(30, 30, 46);
+  border-radius: 16px;
+}
+tooltip decoration {
+  background-color: transparent;
+  box-shadow: none;
+}
+tooltip * {
+  background-color: transparent;
+}
+tooltip label {
+  color: @purple;
+  padding: 0 4px;
+}
+
+#cpu,
+#custom-igpu,
+#memory {
+  min-width: 56px;
+}
+
+#temperature,
+#battery {
+  min-width: 64px;
+}
+
+#custom-fan {
+  min-width: 72px;
+}
+
+#custom-mpris_scroll_hdmi {
+  min-width: 200px;
+}

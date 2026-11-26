@@ -1,0 +1,229 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "height": 40,
+  "margin-top": 8,
+  "margin-left": 4,
+  "margin-right": 4,
+
+  "group/utilities": {
+    "orientation": "horizontal",
+    "modules": ["network", "bluetooth", "pulseaudio", "backlight"],
+  },
+
+  "group/sysutils": {
+    "orientation": "horizontal",
+    "modules": ["power-profiles-daemon", "custom/pacupcl", "custom/IP"],
+  },
+
+  "group/sysinfo": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/igpu",
+      "temperature",
+      "custom/fan",
+      "cpu",
+      "memory",
+      "battery",
+    ],
+  },
+
+  "custom/launcher": {
+    "format": "<span size='12pt'>󰌽</span>",
+    "tooltip-format": "<span color='#74c7ec'>󱓞</span> <span color='#b4befe' size='9984'>App Launcher</span>",
+    "on-click": "kitty --class=kitty-popup -o confirm_os_window_close=0 -e $HOME/.config/waybar/scripts/fzf_apps-launcher.sh",
+  },
+
+  "custom/pacupcl": {
+    "tooltip-format": "<span color='#eba0ac'>󰮯󰧟󰧟</span> <span color='#b4befe' size='9984'>{}</span>",
+    "format": "󰮯󰧟󰧟",
+    "exec": "$HOME/.config/waybar/scripts/upcl.sh cu && $HOME/.config/waybar/scripts/upcl.sh show",
+    "interval": 1800,
+    "signal": 9,
+    "on-click": "kitty -o confirm_os_window_close=0 --hold -e $HOME/.config/waybar/scripts/upcl.sh upncl",
+    "on-click-right": "pkill -SIGRTMIN+9 waybar",
+  },
+
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "tooltips": {
+      "default": "<span color='#89b4fa'>󰕖 <span color='#b4befe' size='9984'>Workspace <span color='#cdd6f4' size='9984'>{name}</span></span></span>",
+    },
+    "on-click": "activate",
+    "format": "<span size='14336'>{icon}</span>",
+    "format-icons": {
+      "default": "󰪥",
+      "active": "",
+      "urgent": "",
+      "visible": "󰻂",
+    },
+  },
+
+  "custom/mpris_scroll_edp": {
+    "tooltip-format": "<span color='#fab387'>󰎇</span> <span color='#b4befe' size='9984'>{}</span>",
+    "format": "󰎇",
+    "exec": "zscroll --length 32 --delay 1 --update-check true --update-interval 3 \"$HOME/.config/waybar/scripts/music_info.sh\"",
+    "on-click": "playerctl play-pause",
+  },
+
+  "custom/mpris_scroll_hdmi": {
+    "tooltip-format": "<span color='#fab387'>󰎇</span> <span color='#b4befe' size='9984'> Song Title</span>",
+    "format": "󰎇 <span color='#b4befe' size='9984'>{}</span>",
+    "exec": "zscroll --length 24 --delay 1 --update-check true --update-interval 3 \"$HOME/.config/waybar/scripts/music_info.sh\"",
+    "on-click-right": "playerctl play-pause",
+    "on-click": "$HOME/.config/waybar/scripts/ytm.sh",
+  },
+
+  "custom/cava": {
+    "tooltip-format": " <span color='#b4befe' size='9984'>Cava Bar</span>",
+    "format": "{}",
+    "escape": false,
+    "exec": "$HOME/.config/waybar/scripts/cava.sh",
+    "on-click": "$HOME/.config/waybar/scripts/launch_cava.sh",
+  },
+
+  "clock": {
+    "tooltip-format": "<span color='#94e2d5'>󰃰</span> <span color='#b4befe' size='9984'>Date &amp; Time</span>",
+    "format": " <span color='#b4befe' size='9984'>{0:%a, %b %d}</span>   <span color='#94e2d5'>󱑍 </span><span color='#b4befe' size='9984'>{0:%I:%M %p}</span>",
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "tooltip-format": "<span color='#f5c2e7'>{icon}</span> <span color='#b4befe' size='9984'>{percent}%</span>",
+    "format": "{icon}",
+    "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"],
+    "on-click": "kitty --class=kitty-popup -o confirm_os_window_close=0 -o 'map esc close_os_window' -e $HOME/.config/waybar/scripts/setbright.sh",
+    "on-scroll-up": "brightnessctl set +1%",
+    "on-scroll-down": "brightnessctl -n set 1%-",
+  },
+
+  "custom/IP": {
+    "tooltip-format": "<span color='#f2cdcd'>󰩠</span> <span color='#b4befe' size='9984'>{}</span>",
+    "format": "󰩠",
+    "exec": "$HOME/.config/waybar/scripts/get_ip.sh pl",
+    "interval": 300,
+  },
+
+  "custom/ddc": {
+    "tooltip-format": "<span color='#f5c2e7'>{icon}</span> <span color='#b4befe' size='9984'>{percentage}%</span>",
+    "exec": "$HOME/.config/waybar/scripts/ddc.sh",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 8,
+    "format": "{icon}",
+    "format-icons": ["󰃚", "󰃝", "󰃞", "󰃟", "󰃠", null, null, null, null],
+    "on-click": "kitty --class=kitty-popup -o confirm_os_window_close=0 -o 'map esc close_os_window' -e $HOME/.config/waybar/scripts/setbrightEX.sh",
+    "on-click-right": "pkill -SIGRTMIN+8 waybar",
+    //"on-scroll-up": "$HOME/.config/waybar/scripts/setbrightEXscroll.sh up",
+    //"on-scroll-down": "$HOME/.config/waybar/scripts/setbrightEXscroll.sh down",
+  },
+
+  "pulseaudio": {
+    "tooltip-format": "<span color='#f5c2e7'>{icon}</span> <span color='#b4befe' size='9984'>{volume}%</span>",
+    "format-bluetooth": "󰜟",
+    "format-muted": "󰸈",
+    "format": "{icon}",
+    "format-icons": ["󰕿", "󰖀", "󰕾", "󰜟"],
+    "on-click": "kitty --class=kitty-popup -o confirm_os_window_close=0 -o 'map esc close_os_window' -e $HOME/.config/waybar/scripts/setvol.sh",
+    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-",
+  },
+
+  "bluetooth": {
+    "tooltip-format": "<span color='#89dceb'>{icon}</span> <span color='#b4befe' size='9984'>{device_alias}</span>",
+    "format": "󰂲",
+    "format-connected": "󰂱",
+    "on-click": "kitty --class=kitty-popup -o confirm_os_window_close=0 -o 'map esc close_os_window' -e bluetui",
+    "format-icons": ["󰂱", "󰂲"],
+  },
+
+  "network": {
+    "tooltip-format": "<span color='#89dceb'>{icon}</span> <span color='#b4befe' size='9984'>{essid}</span>",
+    "format-wifi": "{icon}",
+    "format-disconnected": "󰤮",
+    "format-linked": "󰤫",
+    "format-icons": ["󰤮", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "signal-threshold-icons": true,
+    "on-click": "kitty --class=kitty-popup -o confirm_os_window_close=0 -o 'map esc close_os_window' -e impala",
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "<span color='#89b4fa'>{icon}</span> <span color='#b4befe' size='9984'>{profile}</span>",
+    "format-icons": {
+      "performance": "󱠇",
+      "balanced": "󱟜",
+      "power-saver": "󱤅",
+    },
+  },
+
+  "battery": {
+    "tooltip-format": "󰄌 <span color='#b4befe' size='9984'>Battery</span>",
+    "states": {
+      "warning": 50,
+      "critical": 25,
+    },
+    "bat": "BAT0",
+    "adapter": "ADP1",
+    "format": "{icon} <span color='#b4befe' size='9984'>{capacity}%</span>",
+    "format-charging": "<span color='#a6e3a1'>󰂊</span> <span color='#b4befe' size='9984'>{capacity}%</span>",
+    "format-plugged": "<span color='#cba6f7' size='14pt'>󱤁</span> <span color='#b4befe' size='9984'> {capacity}%</span>",
+    "full-at-plugged": true,
+    "format-icons": ["󰂎", "󰁻", "󰁽", "󰁿", "󰂁", "󰁹"],
+  },
+
+  "custom/onf": {
+    "tooltip-format": "<span color='#f38ba8'>⏻</span> <span color='#b4befe' size='9984'>Power Actions</span>",
+    "format": "⏻",
+    "on-click": "kitty --class=kitty-popup -o confirm_os_window_close=0 -o 'map esc close_os_window' -e $HOME/.config/waybar/scripts/power_actions.sh",
+  },
+
+  "memory": {
+    "tooltip-format": " <span color='#b4befe' size='9984'>{used:0.2f}G / {total:0.2f}G</span>\n󰣂 <span color='#b4befe' size='9984'>{swapUsed:0.2f}G / {swapTotal:0.2f}G</span>",
+    "interval": 5,
+    "format": " <span color='#b4befe' size='9984'>{percentage}%</span>",
+    "states": {
+      "warning": 70,
+      "critical": 90,
+    },
+    "on-click": "kitty -e btop",
+  },
+
+  "cpu": {
+    "tooltip-format": " <span color='#b4befe' size='9984'>{load}</span>\n <span color='#b4befe' size='9984'>{avg_frequency} GHz</span>",
+    "format": "<span size='14pt'>󰻠</span> <span color='#b4befe' size='9984'>{usage}%</span>",
+    "interval": 2,
+    "states": {
+      "warning": 70,
+      "critical": 90,
+    },
+    "on-click": "kitty -e btop",
+  },
+
+  "temperature": {
+    "tooltip-format": "󰏈 <span color='#b4befe' size='9984'>CPU &amp; iGPU Temperature</span>",
+    "interval": 2,
+    "format": "{icon} <span color='#b4befe' size='9984'>{temperatureC}°C</span>",
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
+    "critical-threshold": 85,
+    "format-critical": "󰈸 <span color='#b4befe' size='9984'>{temperatureC}°C</span>",
+    "format-icons": ["", ""],
+  },
+
+  "custom/igpu": {
+    // 󰢮
+    "format": " <span color='#b4befe' size='9984'>{}</span>",
+    "exec": "$HOME/.config/waybar/scripts/igpu.sh",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "kitty -e intel_gpu_top",
+  },
+
+  "custom/fan": {
+    "tooltip-format": " <span color='#b4befe' size='9984'>Fan Speed</span>",
+    "format": "󰈐 <span color='#b4befe' size='9984'>{}</span><span color='#b4befe' size='9984'><small>rpm</small></span>",
+    "exec": "awk '/speed:/ {print $2}' /proc/acpi/ibm/fan",
+    "interval": 2,
+  },
+}

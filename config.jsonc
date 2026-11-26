@@ -1,0 +1,33 @@
+[
+  {
+    "name": "main",
+    "output": "!eDP-1",
+    "include": ["$HOME/.config/waybar/modules.jsonc"],
+    "modules-left": [
+      "custom/launcher",
+      "clock",
+      "custom/mpris_scroll_hdmi",
+      "custom/cava",
+    ],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": [
+      "group/sysinfo",
+      "group/sysutils",
+      "group/utilities",
+      "custom/onf",
+    ],
+    "group/utilities": {
+      "orientation": "horizontal",
+      "modules": ["network", "bluetooth", "pulseaudio", "custom/ddc"],
+    },
+  },
+
+  {
+    "name": "laptop",
+    "output": "eDP-1",
+    "include": ["$HOME/.config/waybar/modules.jsonc"],
+    "modules-left": ["custom/launcher", "clock"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["group/sysutils", "group/utilities", "custom/onf"],
+  },
+]
